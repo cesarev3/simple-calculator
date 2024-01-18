@@ -135,8 +135,22 @@ public class MainFrame extends JFrame {
 
         buildNumber.delete(0,buildNumber.length());
         //textScreen.setText("");
+        String newTextScreen;
 
-        textScreen.setText(calculator.calculateAddition(firstNumber, secondNumber));
+        if (plus) newTextScreen = calculator.calculateAddition(firstNumber, secondNumber);
+        else if (minus) newTextScreen = calculator.calculateSubtraction(firstNumber, secondNumber);
+        else if (times) newTextScreen = calculator.calculateMultiplicacation(firstNumber, secondNumber);
+        else if (dividedBy) newTextScreen = calculator.calculateDivision(firstNumber, secondNumber);
+        else newTextScreen = buildNumber.toString();
+
+        buildNumber.append(newTextScreen);
+
+        textScreen.setText(buildNumber.toString());
+
+        plus = false;
+        minus = false;
+        times = false;
+        dividedBy = false;
     }
 
     private void plus(ActionEvent e) {
@@ -144,7 +158,7 @@ public class MainFrame extends JFrame {
 //        String inputNumber = String.valueOf(buildNumber);
 //        System.out.println(inputNumber);
         firstNumber = Double.valueOf(String.valueOf(buildNumber)).doubleValue();
-        System.out.println(firstNumber);
+        plus = true;
 
         buildNumber.delete(0,buildNumber.length());
         textScreen.setText("");
@@ -152,14 +166,29 @@ public class MainFrame extends JFrame {
 
     private void minus(ActionEvent e) {
         // TODO add your code here
+        firstNumber = Double.valueOf(String.valueOf(buildNumber)).doubleValue();
+        minus = true;
+
+        buildNumber.delete(0,buildNumber.length());
+        textScreen.setText("");
     }
 
     private void times(ActionEvent e) {
         // TODO add your code here
+        firstNumber = Double.valueOf(String.valueOf(buildNumber)).doubleValue();
+        times = true;
+
+        buildNumber.delete(0,buildNumber.length());
+        textScreen.setText("");
     }
 
     private void dividedBy(ActionEvent e) {
         // TODO add your code here
+        firstNumber = Double.valueOf(String.valueOf(buildNumber)).doubleValue();
+        dividedBy = true;
+
+        buildNumber.delete(0,buildNumber.length());
+        textScreen.setText("");
     }
 
     private void yPowX(ActionEvent e) {

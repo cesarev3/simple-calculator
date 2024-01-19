@@ -30,7 +30,7 @@ public class Calculator {
         return String.valueOf(number1 / number2);
     }
 
-    public String calculateXPowerY(double number1, double number2){
+    public String calculatePowerBy(double number1, double number2){
         return String.valueOf(Math.pow(number1, number2));
     }
 }

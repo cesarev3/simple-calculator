@@ -7,7 +7,6 @@ package br.tec.codewaves.simplecalculator.view;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.text.MaskFormatter;
 
 import br.tec.codewaves.simplecalculator.Calculator;
 import net.miginfocom.swing.*;
@@ -16,42 +15,73 @@ import net.miginfocom.swing.*;
  * @author magne
  */
 public class MainFrame extends JFrame {
-
     Calculator calculator = new Calculator();
     StringBuilder buildNumber = new StringBuilder();
-    StringBuilder buildScreenText = new StringBuilder();
-    double firstNumber;
-    double secondNumber;
-    boolean plus;
-    boolean minus;
-    boolean times;
-    boolean dividedBy;
-    boolean decimal;
-
     
     public MainFrame() {
         initComponents();
     }
 
-    private void invert(ActionEvent e) {
-        // TODO add your code here
-        Integer i = buildNumber.indexOf("-");
+    private void button1(ActionEvent e) {
+        buildNumber.append("1");
+        updateScreen();
+    }
 
-        if (i == 0) buildNumber.delete(0, 1);
-        else buildNumber.insert(0, "-");
+    private void button2(ActionEvent e) {
+        buildNumber.append("2");
+        updateScreen();
+    }
 
-        textScreen.setText(buildNumber.toString());
+    private void button3(ActionEvent e) {
+        buildNumber.append("3");
+        updateScreen();
+    }
+
+    private void button4(ActionEvent e) {
+        buildNumber.append("4");
+        updateScreen();
+    }
+
+    private void button5(ActionEvent e) {
+        buildNumber.append("5");
+        updateScreen();
+    }
+
+    private void button6(ActionEvent e) {
+        buildNumber.append("6");
+        updateScreen();
+    }
+
+    private void button7(ActionEvent e) {
+        buildNumber.append("7");
+        updateScreen();
+    }
+
+    private void button8(ActionEvent e) {
+        buildNumber.append("8");
+        updateScreen();
+    }
+
+    private void button9(ActionEvent e) {
+        buildNumber.append("9");
+        updateScreen();
     }
 
     private void button10(ActionEvent e) {
-        // TODO add your code here
         buildNumber.append("0");
-        textScreen.setText(buildNumber.toString());
+        updateScreen();
+    }
+
+    private void invert(ActionEvent e) {
+        int i = buildNumber.indexOf("-");
+
+        if (i == 0) buildNumber.delete(0, 1);
+        else buildNumber.insert(0, "-");
+        updateScreen();
     }
 
     private void decimal(ActionEvent e) {
-        // TODO add your code here
-        if (buildNumber.isEmpty()) {
+        if (buildNumber.isEmpty() && !decimal) {
             buildNumber.append("0.");
             decimal = true;
 
@@ -59,146 +89,92 @@ public class MainFrame extends JFrame {
             buildNumber.append(".");
             decimal = true;
         }
-
-        textScreen.setText(buildNumber.toString());
+        updateScreen();
     }
 
-    private void button1(ActionEvent e) {
-        // TODO add your code here
-        buildNumber.append("1");
-        textScreen.setText(buildNumber.toString());
-    }
-
-    private void button2(ActionEvent e) {
-        // TODO add your code here
-        buildNumber.append("2");
-        textScreen.setText(buildNumber.toString());
-    }
-
-    private void button3(ActionEvent e) {
-        // TODO add your code here
-        buildNumber.append("3");
-        textScreen.setText(buildNumber.toString());
-    }
-
-    private void button4(ActionEvent e) {
-        // TODO add your code here
-        buildNumber.append("4");
-        textScreen.setText(buildNumber.toString());
-    }
-
-    private void button5(ActionEvent e) {
-        // TODO add your code here
-        buildNumber.append("5");
-        textScreen.setText(buildNumber.toString());
-    }
-
-    private void button6(ActionEvent e) {
-        // TODO add your code here
-        buildNumber.append("6");
-        textScreen.setText(buildNumber.toString());
-    }
-
-    private void button7(ActionEvent e) {
-        // TODO add your code here
-        buildNumber.append("7");
-        textScreen.setText(buildNumber.toString());
-    }
-
-    private void button8(ActionEvent e) {
-        // TODO add your code here
-        buildNumber.append("8");
-        textScreen.setText(buildNumber.toString());
-    }
-
-    private void button9(ActionEvent e) {
-        // TODO add your code here
-        buildNumber.append("9");
+    private void updateScreen() {
         textScreen.setText(buildNumber.toString());
     }
 
     private void clean(ActionEvent e) {
-        // TODO add your code here
         allClean();
     }
 
-
+    private void turnBooleansToFalse() {
+        plus = false;
+        minus = false;
+        times = false;
+        dividedBy = false;
+        powerBy = false;
+    }
 
     private void percent(ActionEvent e) {
-        // TODO add your code here
+        if (buildNumber.isEmpty()) return;
+        double baseNumber = Double.parseDouble(String.valueOf(buildNumber));
+        baseNumber = baseNumber / 100;
+        buildNumber = new StringBuilder(String.valueOf(baseNumber));
+        updateScreen();
+    }
+
+    private void plus(ActionEvent e) {
+        if (buildNumber.isEmpty()) return;
+        firstNumber = Double.parseDouble(String.valueOf(buildNumber));
+        plus = true;
+        decimal = false;
+        buildNumber.delete(0,buildNumber.length());
+    }
+
+    private void minus(ActionEvent e) {
+        if (buildNumber.isEmpty()) return;
+        firstNumber = Double.parseDouble(String.valueOf(buildNumber));
+        minus = true;
+        decimal = false;
+        buildNumber.delete(0,buildNumber.length());
+    }
+
+    private void times(ActionEvent e) {
+        if (buildNumber.isEmpty()) return;
+        firstNumber = Double.parseDouble(String.valueOf(buildNumber));
+        times = true;
+        decimal = false;
+        buildNumber.delete(0,buildNumber.length());
+    }
+
+    private void dividedBy(ActionEvent e) {
+        if (buildNumber.isEmpty()) return;
+        firstNumber = Double.parseDouble(String.valueOf(buildNumber));
+        dividedBy = true;
+        decimal = false;
+        buildNumber.delete(0,buildNumber.length());
+    }
+
+    private void powerBy(ActionEvent e) {
+        if (buildNumber.isEmpty()) return;
+        firstNumber = Double.parseDouble(String.valueOf(buildNumber));
+        powerBy = true;
+        decimal = false;
+        buildNumber.delete(0,buildNumber.length());
     }
 
     private void equals(ActionEvent e) {
-        // TODO add your code here
-        secondNumber = Double.valueOf(String.valueOf(buildNumber)).doubleValue();
-        System.out.println(secondNumber);
-
-        buildNumber.delete(0,buildNumber.length());
-        //textScreen.setText("");
+        if (buildNumber.isEmpty()) return;
+        secondNumber = Double.parseDouble(String.valueOf(buildNumber));
         String newTextScreen;
 
         if (plus) newTextScreen = calculator.calculateAddition(firstNumber, secondNumber);
         else if (minus) newTextScreen = calculator.calculateSubtraction(firstNumber, secondNumber);
         else if (times) newTextScreen = calculator.calculateMultiplicacation(firstNumber, secondNumber);
         else if (dividedBy) newTextScreen = calculator.calculateDivision(firstNumber, secondNumber);
-        else newTextScreen = buildNumber.toString();
+        else if (powerBy) newTextScreen = calculator.calculatePowerBy(firstNumber, secondNumber);
+        else return;
 
+        buildNumber.delete(0,buildNumber.length());
         buildNumber.append(newTextScreen);
-
-        textScreen.setText(buildNumber.toString());
-
-        plus = false;
-        minus = false;
-        times = false;
-        dividedBy = false;
+        updateScreen();
+        turnBooleansToFalse();
+        decimal = true;
     }
-
-    private void plus(ActionEvent e) {
-        // TODO add your code here
-//        String inputNumber = String.valueOf(buildNumber);
-//        System.out.println(inputNumber);
-        firstNumber = Double.valueOf(String.valueOf(buildNumber)).doubleValue();
-        plus = true;
-
-        buildNumber.delete(0,buildNumber.length());
-        textScreen.setText("");
-    }
-
-    private void minus(ActionEvent e) {
-        // TODO add your code here
-        firstNumber = Double.valueOf(String.valueOf(buildNumber)).doubleValue();
-        minus = true;
-
-        buildNumber.delete(0,buildNumber.length());
-        textScreen.setText("");
-    }
-
-    private void times(ActionEvent e) {
-        // TODO add your code here
-        firstNumber = Double.valueOf(String.valueOf(buildNumber)).doubleValue();
-        times = true;
-
-        buildNumber.delete(0,buildNumber.length());
-        textScreen.setText("");
-    }
-
-    private void dividedBy(ActionEvent e) {
-        // TODO add your code here
-        firstNumber = Double.valueOf(String.valueOf(buildNumber)).doubleValue();
-        dividedBy = true;
-
-        buildNumber.delete(0,buildNumber.length());
-        textScreen.setText("");
-    }
-
-    private void yPowX(ActionEvent e) {
-        // TODO add your code here
-    }
-
-    private void yoverX(ActionEvent e) {
-        // TODO add your code here
-    }
-
+    
     private void allClean() {
         buildNumber.delete(0,buildNumber.length());
         textScreen.setText("");
@@ -207,6 +183,7 @@ public class MainFrame extends JFrame {
         minus = false;
         times = false;
         dividedBy = false;
+        powerBy = false;
     }
 
     private void initComponents() {
@@ -215,7 +192,7 @@ public class MainFrame extends JFrame {
         textScreen = new JFormattedTextField();
         buttonClean = new JButton();
         buttonPercent = new JButton();
-        buttonYPowX = new JButton();
+        buttonPowerBy = new JButton();
         buttonDividedBy = new JButton();
         button7 = new JButton();
         button8 = new JButton();
@@ -233,11 +210,12 @@ public class MainFrame extends JFrame {
         button10 = new JButton();
         buttonDecimal = new JButton();
         buttonEquals = new JButton();
+        label1 = new JLabel();
 
         //======== this ========
         var contentPane = getContentPane();
         contentPane.setLayout(new MigLayout(
-            "hidemode 3",
+            "fill,hidemode 3,align leading top",
             // columns
             "[77,fill]" +
             "[68,fill]" +
@@ -254,7 +232,7 @@ public class MainFrame extends JFrame {
             "[]"));
 
         //---- textScreen ----
-        textScreen.setFont(new Font("Segoe UI", Font.PLAIN, 24));
+        textScreen.setFont(new Font("Segoe UI", Font.PLAIN, 28));
         textScreen.setHorizontalAlignment(SwingConstants.TRAILING);
         contentPane.add(textScreen, "cell 0 0 4 1,growy");
 
@@ -270,19 +248,16 @@ public class MainFrame extends JFrame {
         buttonPercent.addActionListener(e -> percent(e));
         contentPane.add(buttonPercent, "cell 1 2");
 
-        //---- buttonYPowX ----
-        buttonYPowX.setText("x^y");
-        buttonYPowX.setFont(new Font("Segoe UI", Font.BOLD, 16));
-        buttonYPowX.addActionListener(e -> {
-			yoverX(e);
-			yPowX(e);
-		});
-        contentPane.add(buttonYPowX, "cell 2 2");
+        //---- buttonPowerBy ----
+        buttonPowerBy.setText("x^y");
+        buttonPowerBy.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        buttonPowerBy.addActionListener(e -> powerBy(e));
+        contentPane.add(buttonPowerBy, "cell 2 2");
 
         //---- buttonDividedBy ----
-        buttonDividedBy.setText("/");
+        buttonDividedBy.setText("\u00f7");
         buttonDividedBy.setBackground(new Color(0xd69999));
-        buttonDividedBy.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        buttonDividedBy.setFont(new Font("Segoe UI", Font.BOLD, 18));
         buttonDividedBy.addActionListener(e -> dividedBy(e));
         contentPane.add(buttonDividedBy, "cell 3 2");
 
@@ -305,7 +280,7 @@ public class MainFrame extends JFrame {
         contentPane.add(button9, "cell 2 3");
 
         //---- buttonTimes ----
-        buttonTimes.setText("x");
+        buttonTimes.setText("\u00d7");
         buttonTimes.setFont(new Font("Segoe UI", Font.BOLD, 18));
         buttonTimes.setBackground(new Color(0xd69999));
         buttonTimes.addActionListener(e -> times(e));
@@ -385,23 +360,17 @@ public class MainFrame extends JFrame {
         buttonEquals.setBackground(new Color(0xff6419));
         buttonEquals.addActionListener(e -> equals(e));
         contentPane.add(buttonEquals, "cell 3 6");
+
+        //---- label1 ----
+        label1.setText("Powered by CodeWaves");
+        contentPane.add(label1, "cell 0 7 4 1,alignx center,growx 0");
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
 
         // personalizado
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Simple Calculator - CodeWaves");
-
-//        MaskFormatter maskDate;
-//        try {
-//            maskDate = new MaskFormatter("##########");
-//            maskDate.setPlaceholderCharacter('_');
-//            textScreen.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory
-//                    (maskDate));
-//        } catch (java.text.ParseException ex) {
-//            ex.printStackTrace();
-//        }
+        setTitle("Simple Calculator");
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
@@ -409,7 +378,7 @@ public class MainFrame extends JFrame {
     private JFormattedTextField textScreen;
     private JButton buttonClean;
     private JButton buttonPercent;
-    private JButton buttonYPowX;
+    private JButton buttonPowerBy;
     private JButton buttonDividedBy;
     private JButton button7;
     private JButton button8;
@@ -427,5 +396,15 @@ public class MainFrame extends JFrame {
     private JButton button10;
     private JButton buttonDecimal;
     private JButton buttonEquals;
+    private JLabel label1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
+
+    double firstNumber;
+    double secondNumber;
+    boolean plus;
+    boolean minus;
+    boolean times;
+    boolean dividedBy;
+    boolean decimal;
+    boolean powerBy;
 }

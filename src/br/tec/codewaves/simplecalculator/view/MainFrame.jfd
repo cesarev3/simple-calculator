@@ -4,14 +4,14 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
-			"$layoutConstraints": "hidemode 3"
+			"$layoutConstraints": "fill,hidemode 3,align leading top"
 			"$columnConstraints": "[77,fill][68,fill][77,fill][77,fill]"
 			"$rowConstraints": "[70][12][][][][][][]"
 		} ) {
 			name: "this"
 			add( new FormComponent( "javax.swing.JFormattedTextField" ) {
 				name: "textScreen"
-				"font": new java.awt.Font( "Segoe UI", 0, 24 )
+				"font": new java.awt.Font( "Segoe UI", 0, 28 )
 				"horizontalAlignment": 11
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 0 0 4 1,growy"
@@ -33,19 +33,18 @@ new FormModel {
 				"value": "cell 1 2"
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "buttonYPowX"
+				name: "buttonPowerBy"
 				"text": "x^y"
 				"font": new java.awt.Font( "Segoe UI", 1, 16 )
-				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "yoverX", true ) )
-				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "yPowX", true ) )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "powerBy", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 2 2"
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "buttonDividedBy"
-				"text": "/"
+				"text": "÷"
 				"background": new java.awt.Color( 214, 153, 153, 255 )
-				"font": new java.awt.Font( "Segoe UI", 1, 16 )
+				"font": new java.awt.Font( "Segoe UI", 1, 18 )
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "dividedBy", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 3 2"
@@ -76,7 +75,7 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "buttonTimes"
-				"text": "x"
+				"text": "×"
 				"font": new java.awt.Font( "Segoe UI", 1, 18 )
 				"background": new java.awt.Color( 214, 153, 153, 255 )
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "times", true ) )
@@ -182,9 +181,15 @@ new FormModel {
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 3 6"
 			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Powered by CodeWaves"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 7 4 1,alignx center,growx 0"
+			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 270, 306 )
+			"size": new java.awt.Dimension( 290, 326 )
 		} )
 	}
 }

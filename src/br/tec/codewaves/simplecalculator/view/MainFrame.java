@@ -12,7 +12,7 @@ import br.tec.codewaves.simplecalculator.Calculator;
 import net.miginfocom.swing.*;
 
 /**
- * @author magne
+ * @author Carlos Cesar Pereira - Janeiro/2024
  */
 public class MainFrame extends JFrame {
     Calculator calculator = new Calculator();
@@ -232,7 +232,7 @@ public class MainFrame extends JFrame {
             "[]"));
 
         //---- textScreen ----
-        textScreen.setFont(new Font("Segoe UI", Font.PLAIN, 28));
+        textScreen.setFont(new Font("Segoe UI", Font.PLAIN, 36));
         textScreen.setHorizontalAlignment(SwingConstants.TRAILING);
         contentPane.add(textScreen, "cell 0 0 4 1,growy");
 

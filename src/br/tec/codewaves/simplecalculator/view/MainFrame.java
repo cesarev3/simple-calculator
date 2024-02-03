@@ -110,9 +110,10 @@ public class MainFrame extends JFrame {
 
     private void percent(ActionEvent e) {
         if (buildNumber.isEmpty()) return;
-        double baseNumber = Double.parseDouble(String.valueOf(buildNumber));
-        baseNumber = baseNumber / 100;
-        buildNumber = new StringBuilder(String.valueOf(baseNumber));
+        buildNumber = new StringBuilder(calculator.calculatePercent(String.valueOf(buildNumber)));
+//        double baseNumber = Double.parseDouble(String.valueOf(buildNumber));
+//        baseNumber = baseNumber / 100;
+//        buildNumber = new StringBuilder(String.valueOf(baseNumber));
         updateScreen();
     }
 
